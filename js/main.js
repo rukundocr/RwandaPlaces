@@ -1,10 +1,11 @@
 const search = document.getElementById('search')
-
+const wait = document.getElementById('wait');
 const match = document.getElementById('match-list')
 
 //search places.json and filter 
 
 const searchpPlaces = async searchtext => {
+    wait.innerHTML = "Wait a bit while we are processing your request  ........"
    const res = await fetch('../data/rwandaData.json');
    const places = await res.json();
    //console.log(places);
@@ -20,6 +21,7 @@ const searchpPlaces = async searchtext => {
   if(searchtext.length === 0){
     matches = []
     match.innerHTML = "" ;
+    wait.innerHTML = "";
   }
    outputHtml(matches);
     
@@ -27,6 +29,7 @@ const searchpPlaces = async searchtext => {
 };
 
 const outputHtml = matches =>{
+    wait.innerHTML = "";
     if(matches.length > 0){
         const html = matches.map(match =>
             `
